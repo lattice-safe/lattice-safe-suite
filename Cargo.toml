@@ -1,5 +1,5 @@
 [package]
-name = "lattice-safe"
+name = "lattice-safe-suite"
 version = "0.2.0"
 edition = "2021"
 rust-version = "1.70"
@@ -9,7 +9,7 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/lattice-safe/lattice-safe-suite"
 homepage = "https://github.com/lattice-safe"
-documentation = "https://docs.rs/lattice-safe"
+documentation = "https://docs.rs/lattice-safe-suite"
 keywords = ["post-quantum", "cryptography", "ml-dsa", "fn-dsa", "ml-kem"]
 categories = ["cryptography", "no-std"]
 
