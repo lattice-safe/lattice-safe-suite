@@ -10,6 +10,7 @@
 //! | [`dilithium`] | FIPS 204 | ML-DSA (Dilithium) | 2, 3, 5 |
 //! | [`falcon`] | FIPS 206 | FN-DSA (Falcon) | I, V |
 //! | [`kyber`] | FIPS 203 | ML-KEM (Kyber) | 1, 3, 5 |
+//! | [`slh_dsa`] | FIPS 205 | SLH-DSA (SPHINCS+) | 1, 3, 5 |
 //!
 //! ## Quick Start
 //!
@@ -31,10 +32,11 @@
 //! | `dilithium` | ✅ | ML-DSA (FIPS 204) signatures |
 //! | `falcon` | ✅ | FN-DSA (FIPS 206) signatures |
 //! | `kyber` | ✅ | ML-KEM (FIPS 203) key encapsulation |
+//! | `slh-dsa` | ✅ | SLH-DSA (FIPS 205) hash-based signatures |
 //! | `serde` | ❌ | Serialization for keys and signatures |
 //! | `simd` | ❌ | AVX2/NEON NTT acceleration (ML-DSA only) |
 
-#![cfg_attr(not(any(feature = "dilithium", feature = "falcon", feature = "kyber")), no_std)]
+#![cfg_attr(not(any(feature = "dilithium", feature = "falcon", feature = "kyber", feature = "slh-dsa")), no_std)]
 
 /// ML-DSA (FIPS 204) / CRYSTALS-Dilithium digital signatures.
 ///
@@ -53,3 +55,9 @@ pub use falcon;
 /// Re-exported from the [`lattice-kyber`](https://crates.io/crates/lattice-kyber) crate.
 #[cfg(feature = "kyber")]
 pub use kyber;
+
+/// SLH-DSA (FIPS 205) / SPHINCS+ stateless hash-based signatures.
+///
+/// Re-exported from the [`lattice-slh-dsa`](https://crates.io/crates/lattice-slh-dsa) crate.
+#[cfg(feature = "slh-dsa")]
+pub use slh_dsa;

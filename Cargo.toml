@@ -1,10 +1,10 @@
 [package]
 name = "lattice-safe-suite"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 rust-version = "1.70"
 authors = ["lattice-safe contributors"]
-description = "Post-quantum cryptography suite — ML-DSA (FIPS 204) + FN-DSA (FIPS 206) + ML-KEM (FIPS 203)"
+description = "Post-quantum cryptography suite — ML-DSA (FIPS 204) + FN-DSA (FIPS 206) + ML-KEM (FIPS 203) + SLH-DSA (FIPS 205)"
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/lattice-safe/lattice-safe-suite"
@@ -14,10 +14,11 @@ keywords = ["post-quantum", "cryptography", "ml-dsa", "fn-dsa", "ml-kem"]
 categories = ["cryptography", "no-std"]
 
 [features]
-default = ["dilithium", "falcon", "kyber"]
+default = ["dilithium", "falcon", "kyber", "slh-dsa"]
 dilithium = ["dep:dilithium-rs"]
 falcon = ["dep:falcon-rs"]
 kyber = ["dep:lattice-kyber"]
+slh-dsa = ["dep:lattice-slh-dsa"]
 serde = ["dilithium-rs?/serde", "falcon-rs?/serde"]
 simd = ["dilithium-rs?/simd"]
 
@@ -25,6 +26,7 @@ simd = ["dilithium-rs?/simd"]
 dilithium-rs = { version = "0.2", optional = true }
 falcon-rs = { version = "0.2", optional = true }
 lattice-kyber = { version = "0.1", optional = true }
+lattice-slh-dsa = { version = "0.1", optional = true }
 
 [package.metadata.docs.rs]
 all-features = true
