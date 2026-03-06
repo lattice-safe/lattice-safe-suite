@@ -1,6 +1,6 @@
 [package]
 name = "lattice-safe-suite"
-version = "0.3.0"
+version = "0.3.1"
 edition = "2021"
 rust-version = "1.70"
 authors = ["lattice-safe contributors"]
@@ -19,7 +19,7 @@ dilithium = ["dep:dilithium-rs"]
 falcon = ["dep:falcon-rs"]
 kyber = ["dep:lattice-kyber"]
 slh-dsa = ["dep:lattice-slh-dsa"]
-serde = ["dilithium-rs?/serde", "falcon-rs?/serde"]
+serde = ["dilithium-rs?/serde", "falcon-rs?/serde", "lattice-slh-dsa?/serde"]
 simd = ["dilithium-rs?/simd"]
 
 [dependencies]
