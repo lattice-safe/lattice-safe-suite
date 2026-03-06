@@ -10,14 +10,7 @@ readme = "README.md"
 repository = "https://github.com/lattice-safe/lattice-safe-suite"
 homepage = "https://github.com/lattice-safe"
 documentation = "https://docs.rs/lattice-safe"
-keywords = [
-    "post-quantum",
-    "cryptography",
-    "digital-signature",
-    "ml-dsa",
-    "fn-dsa",
-    "ml-kem",
-]
+keywords = ["post-quantum", "cryptography", "ml-dsa", "fn-dsa", "ml-kem"]
 categories = ["cryptography", "no-std"]
 
 [features]
