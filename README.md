@@ -1,6 +1,6 @@
 # lattice-safe-suite
 
-> **Post-quantum cryptography suite for Rust** — all three NIST PQC standards in one crate.
+> **Post-quantum cryptography suite for Rust** — all four NIST PQC standards in one crate.
 
 [![crates.io](https://img.shields.io/crates/v/lattice-safe-suite.svg)](https://crates.io/crates/lattice-safe-suite)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -12,6 +12,7 @@
 | [`dilithium-rs`](https://crates.io/crates/dilithium-rs) | FIPS 204 | ML-DSA (Dilithium) | Signature | 2, 3, 5 | ✅ v0.2.0 |
 | [`falcon-rs`](https://crates.io/crates/falcon-rs) | FIPS 206 | FN-DSA (Falcon) | Signature | I, V | ✅ v0.2.2 |
 | [`lattice-kyber`](https://crates.io/crates/lattice-kyber) | FIPS 203 | ML-KEM (Kyber) | KEM | 1, 3, 5 | ✅ v0.1.1 |
+| [`lattice-slh-dsa`](https://crates.io/crates/lattice-slh-dsa) | FIPS 205 | SLH-DSA (SPHINCS+) | Signature | 1, 3, 5 | ✅ v0.1.1 |
 
 All implementations are:
 - **Pure Rust** — zero C dependencies, zero assembly
@@ -25,7 +26,7 @@ All implementations are:
 
 ```toml
 [dependencies]
-lattice-safe-suite = "0.2"
+lattice-safe-suite = "0.3"
 ```
 
 ### ML-DSA (FIPS 204) — Digital Signatures
@@ -62,6 +63,19 @@ let ss_receiver = kem::decaps(ML_KEM_768, &ct, &sk);
 assert_eq!(ss_sender, ss_receiver);
 ```
 
+### SLH-DSA (FIPS 205) — Hash-Based Signatures
+
+```rust
+use lattice_safe_suite::slh_dsa::params::SLH_DSA_SHAKE_128F;
+use lattice_safe_suite::slh_dsa::sign::{keygen_seed, sign, verify};
+
+let mode = SLH_DSA_SHAKE_128F;
+let seed = vec![42u8; mode.seed_bytes()];
+let (pk, sk) = keygen_seed(mode, &seed);
+let sig = sign(&sk, b"message", mode);
+assert!(verify(&pk, &sig, b"message", mode));
+```
+
 ## Feature Flags
 
 | Feature | Default | Description |
@@ -69,6 +83,7 @@ assert_eq!(ss_sender, ss_receiver);
 | `dilithium` | ✅ | ML-DSA (FIPS 204) signatures |
 | `falcon` | ✅ | FN-DSA (FIPS 206) signatures |
 | `kyber` | ✅ | ML-KEM (FIPS 203) key encapsulation |
+| `slh-dsa` | ✅ | SLH-DSA (FIPS 205) hash-based signatures |
 | `serde` | ❌ | Serialization for keys and signatures |
 | `simd` | ❌ | AVX2/NEON NTT acceleration (ML-DSA) |
 
@@ -76,10 +91,10 @@ assert_eq!(ss_sender, ss_receiver);
 
 ```toml
 # ML-DSA only
-lattice-safe-suite = { version = "0.2", default-features = false, features = ["dilithium"] }
+lattice-safe-suite = { version = "0.3", default-features = false, features = ["dilithium"] }
 
-# ML-KEM only
-lattice-safe-suite = { version = "0.2", default-features = false, features = ["kyber"] }
+# SLH-DSA only
+lattice-safe-suite = { version = "0.3", default-features = false, features = ["slh-dsa"] }
 ```
 
 ## License
