@@ -1,7 +1,7 @@
 //! # lattice-safe
 //!
-//! Post-quantum cryptography suite for Rust — digital signatures based on
-//! NIST-standardized lattice schemes.
+//! Post-quantum cryptography suite for Rust — digital signatures and key
+//! encapsulation based on NIST-standardized lattice schemes.
 //!
 //! This crate re-exports the following implementations:
 //!
@@ -9,6 +9,7 @@
 //! |-------|----------|-----------|-------------|
 //! | [`dilithium`] | FIPS 204 | ML-DSA (Dilithium) | 2, 3, 5 |
 //! | [`falcon`] | FIPS 206 | FN-DSA (Falcon) | I, V |
+//! | [`kyber`] | FIPS 203 | ML-KEM (Kyber) | 1, 3, 5 |
 //!
 //! ## Quick Start
 //!
@@ -29,10 +30,11 @@
 //! |---------|---------|-------------|
 //! | `dilithium` | ✅ | ML-DSA (FIPS 204) signatures |
 //! | `falcon` | ✅ | FN-DSA (FIPS 206) signatures |
+//! | `kyber` | ✅ | ML-KEM (FIPS 203) key encapsulation |
 //! | `serde` | ❌ | Serialization for keys and signatures |
 //! | `simd` | ❌ | AVX2/NEON NTT acceleration (ML-DSA only) |
 
-#![cfg_attr(not(any(feature = "dilithium", feature = "falcon")), no_std)]
+#![cfg_attr(not(any(feature = "dilithium", feature = "falcon", feature = "kyber")), no_std)]
 
 /// ML-DSA (FIPS 204) / CRYSTALS-Dilithium digital signatures.
 ///
@@ -45,3 +47,9 @@ pub use dilithium;
 /// Re-exported from the [`falcon-rs`](https://crates.io/crates/falcon-rs) crate.
 #[cfg(feature = "falcon")]
 pub use falcon;
+
+/// ML-KEM (FIPS 203) / CRYSTALS-Kyber key encapsulation.
+///
+/// Re-exported from the [`lattice-kyber`](https://crates.io/crates/lattice-kyber) crate.
+#[cfg(feature = "kyber")]
+pub use kyber;
