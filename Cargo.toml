@@ -1,6 +1,6 @@
 [package]
 name = "lattice-safe-suite"
-version = "0.4.1"
+version = "0.4.2"
 edition = "2021"
 rust-version = "1.70"
 authors = ["lattice-safe contributors"]
@@ -19,16 +19,24 @@ dilithium = ["dep:dilithium-rs"]
 falcon = ["dep:falcon-rs"]
 kyber = ["dep:lattice-kyber"]
 slh-dsa = ["dep:lattice-slh-dsa"]
-serde = ["dilithium-rs?/serde", "falcon-rs?/serde", "lattice-slh-dsa?/serde"]
-simd = ["dilithium-rs?/simd"]
-wasm = ["dep:getrandom"]
+serde = [
+    "dilithium-rs?/serde",
+    "falcon-rs?/serde",
+    "lattice-kyber?/serde",
+    "lattice-slh-dsa?/serde",
+]
+simd = ["dilithium-rs?/simd", "lattice-kyber?/simd"]
+getrandom = ["lattice-kyber?/getrandom"]
+wasm = ["dep:getrandom-js"]
 
 [dependencies]
 dilithium-rs = { version = "0.2", optional = true }
 falcon-rs = { version = "0.2", optional = true }
-lattice-kyber = { version = "0.1", optional = true }
+lattice-kyber = { version = "0.1.2", optional = true }
 lattice-slh-dsa = { version = "0.3.2", optional = true }
-getrandom = { version = "0.2", features = ["js"], optional = true }
+getrandom-js = { version = "0.2", features = [
+    "js",
+], optional = true, package = "getrandom" }
 
 [package.metadata.docs.rs]
 all-features = true
