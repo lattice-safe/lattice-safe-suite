@@ -22,6 +22,21 @@ All implementations are:
 - **SIMD accelerated** — AVX2 (x86_64) + NEON (AArch64) for lattice schemes
 - **1.4–1.9× faster** than C reference implementations
 
+## Performance (Apple M-series, `cargo bench`)
+
+| Standard | Keygen | Sign / Encaps | Verify / Decaps |
+|----------|--------|---------------|-----------------|
+| **ML-DSA-44** | 83 µs | 227 µs | 86 µs |
+| **ML-DSA-65** | 142 µs | 388 µs | 149 µs |
+| **ML-DSA-87** | 221 µs | 447 µs | 228 µs |
+| **FN-DSA-512** | 9.5 ms | 364 µs | 52 µs |
+| **FN-DSA-1024** | 24.8 ms | 776 µs | 107 µs |
+| **ML-KEM-512** | 11 µs | 13 µs | 14 µs |
+| **ML-KEM-768** | 19 µs | 21 µs | 24 µs |
+| **ML-KEM-1024** | 30 µs | 34 µs | 36 µs |
+| **SLH-DSA-SHAKE-128f** | 1.8 ms | 46.8 ms | 2.2 ms |
+| **SLH-DSA-SHA2-128f** | 1.6 ms | 46.3 ms | 2.7 ms |
+
 ## Quick Start
 
 ```toml
