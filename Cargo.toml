@@ -21,12 +21,14 @@ kyber = ["dep:lattice-kyber"]
 slh-dsa = ["dep:lattice-slh-dsa"]
 serde = ["dilithium-rs?/serde", "falcon-rs?/serde", "lattice-slh-dsa?/serde"]
 simd = ["dilithium-rs?/simd"]
+wasm = ["dep:getrandom"]
 
 [dependencies]
 dilithium-rs = { version = "0.2", optional = true }
 falcon-rs = { version = "0.2", optional = true }
 lattice-kyber = { version = "0.1", optional = true }
 lattice-slh-dsa = { version = "0.3.1", optional = true }
+getrandom = { version = "0.2", features = ["js"], optional = true }
 
 [package.metadata.docs.rs]
 all-features = true

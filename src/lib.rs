@@ -35,6 +35,7 @@
 //! | `slh-dsa` | ✅ | SLH-DSA (FIPS 205) hash-based signatures |
 //! | `serde` | ❌ | Serialization for keys and signatures |
 //! | `simd` | ❌ | AVX2/NEON NTT acceleration (ML-DSA only) |
+//! | `wasm` | ❌ | WebAssembly support (`getrandom/js` for browsers) |
 
 #![cfg_attr(not(any(feature = "dilithium", feature = "falcon", feature = "kyber", feature = "slh-dsa")), no_std)]
 
