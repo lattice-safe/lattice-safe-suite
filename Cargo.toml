@@ -26,7 +26,7 @@ simd = ["dilithium-rs?/simd"]
 dilithium-rs = { version = "0.2", optional = true }
 falcon-rs = { version = "0.2", optional = true }
 lattice-kyber = { version = "0.1", optional = true }
-lattice-slh-dsa = { version = "0.2", optional = true }
+lattice-slh-dsa = { version = "0.3", optional = true }
 
 [package.metadata.docs.rs]
 all-features = true
